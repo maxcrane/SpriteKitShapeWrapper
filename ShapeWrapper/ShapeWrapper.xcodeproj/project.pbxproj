@@ -14,6 +14,7 @@
 		5034EDDF1C14F642005D4BC7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5034EDDD1C14F642005D4BC7 /* Main.storyboard */; };
 		5034EDE11C14F642005D4BC7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5034EDE01C14F642005D4BC7 /* Assets.xcassets */; };
 		5034EDE41C14F642005D4BC7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5034EDE21C14F642005D4BC7 /* LaunchScreen.storyboard */; };
+		5034EDEC1C14F70E005D4BC7 /* Rectangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5034EDEB1C14F70E005D4BC7 /* Rectangle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		5034EDE01C14F642005D4BC7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5034EDE31C14F642005D4BC7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5034EDE51C14F642005D4BC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5034EDEB1C14F70E005D4BC7 /* Rectangle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rectangle.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 		5034EDD41C14F642005D4BC7 /* ShapeWrapper */ = {
 			isa = PBXGroup;
 			children = (
+				5034EDED1C14F717005D4BC7 /* Shapes */,
 				5034EDD51C14F642005D4BC7 /* AppDelegate.swift */,
 				5034EDD71C14F642005D4BC7 /* GameScene.sks */,
 				5034EDD91C14F642005D4BC7 /* GameScene.swift */,
@@ -68,6 +71,14 @@
 				5034EDE51C14F642005D4BC7 /* Info.plist */,
 			);
 			path = ShapeWrapper;
+			sourceTree = "<group>";
+		};
+		5034EDED1C14F717005D4BC7 /* Shapes */ = {
+			isa = PBXGroup;
+			children = (
+				5034EDEB1C14F70E005D4BC7 /* Rectangle.swift */,
+			);
+			name = Shapes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -145,6 +156,7 @@
 				5034EDDA1C14F642005D4BC7 /* GameScene.swift in Sources */,
 				5034EDDC1C14F642005D4BC7 /* GameViewController.swift in Sources */,
 				5034EDD61C14F642005D4BC7 /* AppDelegate.swift in Sources */,
+				5034EDEC1C14F70E005D4BC7 /* Rectangle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
