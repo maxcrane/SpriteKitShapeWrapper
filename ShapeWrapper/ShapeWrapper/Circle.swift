@@ -7,6 +7,26 @@
 //
 
 import Foundation
-class Circle{
+import SpriteKit
+
+class Circle: SKShapeNode {
+    required init?(coder aDecoder: NSCoder){
+        super.init(coder: aDecoder)
+        
+        
+    }
     
+    init(aDiameter: Double, aColor: SKColor){
+        super.init()
+        
+        let theOrigin = CGPoint(x: -aDiameter/2, y: -aDiameter/2)
+        let theSize = CGSize(width: aDiameter, height: aDiameter)
+        self.path = CGPathCreateWithEllipseInRect(CGRect(origin: theOrigin, size: theSize), nil)
+        
+        self.physicsBody = SKPhysicsBody(circleOfRadius: CGFloat(aDiameter/2.0))
+        self.physicsBody?.categoryBitMask = CollisionCategories.Circle
+        //self.physicsBody?.affectedByGravity = false
+        
+        self.fillColor = aColor
+    }
 }

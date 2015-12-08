@@ -59,7 +59,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 
             }
             else{
-                addRectAtPoint(location)
+                addCircleAtPoint(location)
+                //addRectAtPoint(location)
             }
         }
     }
@@ -79,6 +80,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let rect = Rectangle(aSize: CGSize(width: 100.0, height: 50.0), aColor: SKColor.blackColor())
         rect.position = aPoint
         self.addChild(rect)
+    }
+    
+    func addCircleAtPoint(aPoint:CGPoint){
+        let circle = Circle(aDiameter: 50.0, aColor: SKColor.orangeColor())
+        circle.position = aPoint
+        self.addChild(circle)
     }
     
 
