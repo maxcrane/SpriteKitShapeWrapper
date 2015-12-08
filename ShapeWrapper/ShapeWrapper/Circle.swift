@@ -18,6 +18,7 @@ class Circle: SKShapeNode {
     
     init(aDiameter: Double, aColor: SKColor){
         super.init()
+        self.name = "circle"
         
         let theOrigin = CGPoint(x: -aDiameter/2, y: -aDiameter/2)
         let theSize = CGSize(width: aDiameter, height: aDiameter)
@@ -25,6 +26,7 @@ class Circle: SKShapeNode {
         
         self.physicsBody = SKPhysicsBody(circleOfRadius: CGFloat(aDiameter/2.0))
         self.physicsBody?.categoryBitMask = CollisionCategories.Circle
+        
         //self.physicsBody?.affectedByGravity = false
         
         self.fillColor = aColor

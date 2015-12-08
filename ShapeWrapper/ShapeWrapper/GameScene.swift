@@ -30,16 +30,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func addButtons(){
-        let rotateLeft = SKLabelNode(text: "rotate left")
+        let rotateLeft = SKLabelNode(text: "+rectangle")
         rotateLeft.fontSize = 20
-        rotateLeft.name = "rotateL"
+        rotateLeft.name = "+rectangle"
         rotateLeft.position = CGPoint(x: self.frame.midX - 70, y: self.frame.maxY - 40)
         rotateLeft.color = SKColor.blackColor()
         self.addChild(rotateLeft)
         
-        let rotateRight = SKLabelNode(text: "rotate right")
+        let rotateRight = SKLabelNode(text: "+circle")
         rotateRight.fontSize = 20
-        rotateRight.name = "rotateR"
+        rotateRight.name = "+circle"
         rotateRight.position = CGPoint(x: self.frame.midX + 70, y: self.frame.maxY - 40)
         rotateRight.color = SKColor.blackColor()
         self.addChild(rotateRight)
@@ -53,14 +53,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             let touchedNode = self.nodeAtPoint(location)
             
-            if(touchedNode.name == "rotateL"){
-                rotateLeft()
-            }else if(touchedNode.name == "rotateR"){
-                
+            if(touchedNode.name == "+circle"){
+                addCircleAtPoint(CGPoint(x: self.frame.midX, y: self.frame.midY))
+            }else if(touchedNode.name == "+rectangle"){
+                addRectAtPoint(CGPoint(x: self.frame.midX, y: self.frame.midY))
             }
-            else{
-                addCircleAtPoint(location)
-                //addRectAtPoint(location)
+            else if(touchedNode.name == "circle" || touchedNode.name == "rectangle"){
+                ShapeUtil.highlight(touchedNode as! SKShapeNode)
             }
         }
     }
