@@ -1,7 +1,8 @@
 //
 //  Triangle.swift
 //  ShapeWrapper
-//
+//  Makes an equilateral triangle with a given side length
+
 //  Created by Max Crane on 12/9/15.
 //  Copyright © 2015 Crane Apps. All rights reserved.
 //  Use this: https://developer.apple.com/library/ios/documentation/2DDrawing/Conceptual/DrawingPrintingiOS/BezierPaths/BezierPaths.html
@@ -20,24 +21,29 @@ class Triangle: SKShapeNode {
         super.init()
         self.name = "Triangle"
         
+        let height = getHeight(aSideLength)
         let bezierPath = UIBezierPath()
-        bezierPath.addLineToPoint(CGPointZero)
+        bezierPath.moveToPoint(CGPoint(x: -aSideLength/2.0, y: -height/2.0))
         
         //add first line
-        var nextPoint = CGPoint(x: aSideLength, y: 0)
+        var nextPoint = CGPoint(x: aSideLength/2, y: -height/2.0)
         bezierPath.addLineToPoint(nextPoint)
         
         //add second line
-        nextPoint = CGPoint(x: aSideLength/2, y: 50)
+        nextPoint = CGPoint(x: 0, y: height/2)
         bezierPath.addLineToPoint(nextPoint)
         
         //add third line
-        bezierPath.addLineToPoint(CGPointZero)
+        bezierPath.closePath()
         
         self.path = bezierPath.CGPath
-        self.physicsBody = SKPhysicsBody(edgeLoopFromPath: self.path!)
+        self.physicsBody = SKPhysicsBody(polygonFromPath: bezierPath.CGPath)
         self.physicsBody?.categoryBitMask = CollisionCategories.Triangle
-        self.physicsBody?.affectedByGravity = false
+        self.physicsBody?.affectedByGravity = true
         self.fillColor = aColor
+    }
+    
+    func getHeight(aSideLength: Double)->Double{
+        return aSideLength * sqrt(3) * 0.5
     }
 }
