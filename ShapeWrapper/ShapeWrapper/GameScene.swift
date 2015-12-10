@@ -12,6 +12,7 @@ struct CollisionCategories{
     static let Border: UInt32 = 0x1
     static let Rectangle: UInt32 = 0x1 << 1
     static let Circle: UInt32 = 0x1 << 2
+    static let Triangle: UInt32 = 0x1 << 3
 }
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
@@ -56,7 +57,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if(touchedNode.name == "+circle"){
                 addCircleAtPoint(CGPoint(x: self.frame.midX, y: self.frame.midY))
             }else if(touchedNode.name == "+rectangle"){
-                addRectAtPoint(CGPoint(x: self.frame.midX, y: self.frame.midY))
+                //addRectAtPoint(CGPoint(x: self.frame.midX, y: self.frame.midY))
+                addTriangleAtPoint(CGPoint(x: self.frame.midX, y: self.frame.midY))
             }
             else if(touchedNode.name == "circle" || touchedNode.name == "rectangle"){
                 ShapeUtil.highlight(touchedNode as! SKShapeNode)
@@ -85,6 +87,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let circle = Circle(aDiameter: 50.0, aColor: SKColor.orangeColor())
         circle.position = aPoint
         self.addChild(circle)
+    }
+    
+    func addTriangleAtPoint(aPoint:CGPoint){
+        let triangle = Triangle(aSideLength: 50.0, aColor: SKColor.orangeColor())
+        triangle.position = aPoint
+        self.addChild(triangle)
     }
     
 
