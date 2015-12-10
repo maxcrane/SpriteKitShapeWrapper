@@ -17,6 +17,7 @@
 		5034EDE11C14F642005D4BC7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5034EDE01C14F642005D4BC7 /* Assets.xcassets */; };
 		5034EDE41C14F642005D4BC7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5034EDE21C14F642005D4BC7 /* LaunchScreen.storyboard */; };
 		5034EDEC1C14F70E005D4BC7 /* Rectangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5034EDEB1C14F70E005D4BC7 /* Rectangle.swift */; };
+		507FA8851C196F91001490AB /* Oval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507FA8841C196F91001490AB /* Oval.swift */; };
 		5089797F1C16D9E0009B73EE /* ShapeUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5089797E1C16D9E0009B73EE /* ShapeUtil.swift */; };
 /* End PBXBuildFile section */
 
@@ -33,6 +34,7 @@
 		5034EDE31C14F642005D4BC7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5034EDE51C14F642005D4BC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5034EDEB1C14F70E005D4BC7 /* Rectangle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rectangle.swift; sourceTree = "<group>"; };
+		507FA8841C196F91001490AB /* Oval.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Oval.swift; sourceTree = "<group>"; };
 		5089797E1C16D9E0009B73EE /* ShapeUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShapeUtil.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -86,6 +88,7 @@
 				502F85CE1C16668700136232 /* Circle.swift */,
 				50099A071C19228B008B5C42 /* Triangle.swift */,
 				5089797E1C16D9E0009B73EE /* ShapeUtil.swift */,
+				507FA8841C196F91001490AB /* Oval.swift */,
 			);
 			name = Shapes;
 			sourceTree = "<group>";
@@ -169,6 +172,7 @@
 				5034EDD61C14F642005D4BC7 /* AppDelegate.swift in Sources */,
 				50099A081C19228B008B5C42 /* Triangle.swift in Sources */,
 				5034EDEC1C14F70E005D4BC7 /* Rectangle.swift in Sources */,
+				507FA8851C196F91001490AB /* Oval.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
