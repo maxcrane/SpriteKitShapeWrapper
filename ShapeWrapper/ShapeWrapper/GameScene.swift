@@ -58,7 +58,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 addCircleAtPoint(CGPoint(x: self.frame.midX, y: self.frame.midY))
             }else if(touchedNode.name == "+rectangle"){
                 //addRectAtPoint(CGPoint(x: self.frame.midX, y: self.frame.midY))
-                addTriangleAtPoint(CGPoint(x: self.frame.midX, y: self.frame.midY))
+                //addTriangleAtPoint(CGPoint(x: self.frame.midX, y: self.frame.midY))
+                addEllipseAtPoint(CGPoint(x: self.frame.midX, y: self.frame.midY))
+                
             }
             else if(touchedNode.name == "circle" || touchedNode.name == "rectangle"){
                 ShapeUtil.highlight(touchedNode as! SKShapeNode)
@@ -81,6 +83,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let rect = Rectangle(aSize: CGSize(width: 100.0, height: 50.0), aColor: SKColor.blackColor())
         rect.position = aPoint
         self.addChild(rect)
+    }
+    
+    func addEllipseAtPoint(aPoint: CGPoint){
+        let ellipse = Ellipse(width: 100.0, height: 50.0, color: SKColor.blackColor())
+        ellipse.position = aPoint
+        self.addChild(ellipse)
     }
     
     func addCircleAtPoint(aPoint:CGPoint){
