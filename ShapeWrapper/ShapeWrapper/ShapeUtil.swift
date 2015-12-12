@@ -13,5 +13,10 @@ class ShapeUtil {
     
     static func highlight(aShape: SKShapeNode){
         aShape.strokeColor = SKColor.blackColor()
+        aShape.lineWidth = 5
+    }
+    
+    static func unhighlight(aShape: SKShapeNode){
+        aShape.strokeColor = SKColor.clearColor()
     }
 }

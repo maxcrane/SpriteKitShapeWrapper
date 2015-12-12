@@ -16,9 +16,13 @@ struct CollisionCategories{
 }
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
+    let shapeNames: [String] = ["rectangle", "circle", "triangle", "ellipse"]
+    var selectedShape: SKShapeNode?
+
     override func didMoveToView(view: SKView) {
         configurePhysics()
         addButtons()
+        self.name = "shapescene"
     }
     
     func configurePhysics(){
@@ -31,19 +35,33 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func addButtons(){
-        let rotateLeft = SKLabelNode(text: "+rectangle")
-        rotateLeft.fontSize = 20
-        rotateLeft.name = "+rectangle"
-        rotateLeft.position = CGPoint(x: self.frame.midX - 70, y: self.frame.maxY - 40)
-        rotateLeft.color = SKColor.blackColor()
-        self.addChild(rotateLeft)
+        let addRectangle = SKLabelNode(text: "+rectangle")
+        addRectangle.fontSize = 20
+        addRectangle.name = "+rectangle"
+        addRectangle.position = CGPoint(x: self.frame.midX - 70, y: self.frame.maxY - 40)
+        addRectangle.color = SKColor.blackColor()
+        self.addChild(addRectangle)
         
-        let rotateRight = SKLabelNode(text: "+circle")
-        rotateRight.fontSize = 20
-        rotateRight.name = "+circle"
-        rotateRight.position = CGPoint(x: self.frame.midX + 70, y: self.frame.maxY - 40)
-        rotateRight.color = SKColor.blackColor()
-        self.addChild(rotateRight)
+        let addCircle = SKLabelNode(text: "+circle")
+        addCircle.fontSize = 20
+        addCircle.name = "+circle"
+        addCircle.position = CGPoint(x: self.frame.midX + 70, y: self.frame.maxY - 40)
+        addCircle.color = SKColor.blackColor()
+        self.addChild(addCircle)
+        
+        let addTriangle = SKLabelNode(text: "+triangle")
+        addTriangle.fontSize = 20
+        addTriangle.name = addTriangle.text
+        addTriangle.position = CGPoint(x: self.frame.midX - 70, y: self.frame.maxY - 70)
+        addTriangle.color = SKColor.blackColor()
+        self.addChild(addTriangle)
+        
+        let addEllipse = SKLabelNode(text: "+ellipse")
+        addEllipse.fontSize = 20
+        addEllipse.name = addEllipse.text
+        addEllipse.position = CGPoint(x: self.frame.midX + 70, y: self.frame.maxY - 70)
+        addEllipse.color = SKColor.blackColor()
+        self.addChild(addEllipse)
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -56,16 +74,38 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             if(touchedNode.name == "+circle"){
                 addCircleAtPoint(CGPoint(x: self.frame.midX, y: self.frame.midY))
-            }else if(touchedNode.name == "+rectangle"){
-                //addRectAtPoint(CGPoint(x: self.frame.midX, y: self.frame.midY))
-                //addTriangleAtPoint(CGPoint(x: self.frame.midX, y: self.frame.midY))
-                addEllipseAtPoint(CGPoint(x: self.frame.midX, y: self.frame.midY))
-                
             }
-            else if(touchedNode.name == "circle" || touchedNode.name == "rectangle"){
-                ShapeUtil.highlight(touchedNode as! SKShapeNode)
+            else if(touchedNode.name == "+rectangle"){
+                addRectAtPoint(CGPoint(x: self.frame.midX, y: self.frame.midY))
+            }
+            else if(touchedNode.name == "+triangle"){
+                addTriangleAtPoint(CGPoint(x: self.frame.midX, y: self.frame.midY))
+            }
+            else if(touchedNode.name == "+ellipse"){
+                addEllipseAtPoint(CGPoint(x: self.frame.midX, y: self.frame.midY))
+            }
+            else if(shapeNames.contains(touchedNode.name!)){
+                selectedShape = touchedNode as? SKShapeNode
+                ShapeUtil.highlight(selectedShape!)
+            }
+            else if(selectedShape != nil){
+                ShapeUtil.unhighlight(selectedShape!)
             }
         }
+    }
+    
+    override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        for touch in touches{
+            let location = touch.locationInNode(self)
+    
+            if(selectedShape != nil){
+                selectedShape!.position = location
+            }
+        }
+    }
+    
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        
     }
     
     func rotateLeft(){
@@ -80,13 +120,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func addRectAtPoint(aPoint: CGPoint){
-        let rect = Rectangle(aSize: CGSize(width: 100.0, height: 50.0), aColor: SKColor.blackColor())
+        let rect = Rectangle(aWidth: 100.0, aHeight: 50.0, aColor: SKColor.orangeColor())
         rect.position = aPoint
         self.addChild(rect)
     }
     
     func addEllipseAtPoint(aPoint: CGPoint){
-        let ellipse = Ellipse(width: 100.0, height: 50.0, color: SKColor.blackColor())
+        let ellipse = Ellipse(width: 100.0, height: 50.0, color: SKColor.orangeColor())
         ellipse.position = aPoint
         self.addChild(ellipse)
     }

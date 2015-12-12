@@ -87,8 +87,8 @@
 				5034EDEB1C14F70E005D4BC7 /* Rectangle.swift */,
 				502F85CE1C16668700136232 /* Circle.swift */,
 				50099A071C19228B008B5C42 /* Triangle.swift */,
-				5089797E1C16D9E0009B73EE /* ShapeUtil.swift */,
 				507FA8841C196F91001490AB /* Ellipse.swift */,
+				5089797E1C16D9E0009B73EE /* ShapeUtil.swift */,
 			);
 			name = Shapes;
 			sourceTree = "<group>";

@@ -16,12 +16,16 @@ class Ellipse: SKShapeNode{
     
     init(width: CGFloat, height: CGFloat, color: SKColor){
         super.init()
+        self.name = "ellipse"
         
-        let rect = CGRect(x: width/2.0, y: height/2.0, width: width, height: height)
+        let rect = CGRect(x: -width/2.0, y: -height/2.0, width: width, height: height)
         let path = CGPathCreateWithEllipseInRect(rect, nil)
         self.path = path
         self.physicsBody = SKPhysicsBody(polygonFromPath: path)
         self.physicsBody?.categoryBitMask = CollisionCategories.Rectangle
+        self.physicsBody?.affectedByGravity = false
+        
+        self.strokeColor = SKColor.clearColor() 
         self.fillColor = color
     }
 }

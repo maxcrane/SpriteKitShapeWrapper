@@ -19,7 +19,7 @@ class Triangle: SKShapeNode {
     
     init(aSideLength: Double, aColor: SKColor){
         super.init()
-        self.name = "Triangle"
+        self.name = "triangle"
         
         let height = getHeight(aSideLength)
         let bezierPath = UIBezierPath()
@@ -39,7 +39,9 @@ class Triangle: SKShapeNode {
         self.path = bezierPath.CGPath
         self.physicsBody = SKPhysicsBody(polygonFromPath: bezierPath.CGPath)
         self.physicsBody?.categoryBitMask = CollisionCategories.Triangle
-        self.physicsBody?.affectedByGravity = true
+        self.physicsBody?.affectedByGravity = false
+        
+        self.strokeColor = SKColor.clearColor() 
         self.fillColor = aColor
     }
     
