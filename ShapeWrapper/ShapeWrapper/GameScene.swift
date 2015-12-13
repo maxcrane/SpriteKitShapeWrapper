@@ -17,6 +17,7 @@ struct CollisionCategories{
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     let shapeNames: [String] = ["rectangle", "circle", "triangle", "ellipse"]
+    var rotateVector: CGVector?
     var selectedShape: SKShapeNode?
 
     override func didMoveToView(view: SKView) {
@@ -66,46 +67,75 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
        /* Called when a touch begins */
-        
-        for touch in touches {
-            let location = touch.locationInNode(self)
-            
-            let touchedNode = self.nodeAtPoint(location)
-            
-            if(touchedNode.name == "+circle"){
-                addCircleAtPoint(CGPoint(x: self.frame.midX, y: self.frame.midY))
+        if(touches.count == 2){
+            var rotatePoints: [CGPoint] = []
+            for touch in touches{
+                rotatePoints.append(touch.locationInNode(self))
             }
-            else if(touchedNode.name == "+rectangle"){
-                addRectAtPoint(CGPoint(x: self.frame.midX, y: self.frame.midY))
-            }
-            else if(touchedNode.name == "+triangle"){
-                addTriangleAtPoint(CGPoint(x: self.frame.midX, y: self.frame.midY))
-            }
-            else if(touchedNode.name == "+ellipse"){
-                addEllipseAtPoint(CGPoint(x: self.frame.midX, y: self.frame.midY))
-            }
-            else if(shapeNames.contains(touchedNode.name!)){
-                selectedShape = touchedNode as? SKShapeNode
-                ShapeUtil.highlight(selectedShape!)
-            }
-            else if(selectedShape != nil){
-                ShapeUtil.unhighlight(selectedShape!)
+            rotateVector = getVectorFromPoints(rotatePoints[0], secondPoint: rotatePoints[1])
+        }
+        else{
+            for touch in touches {
+                let location = touch.locationInNode(self)
+                let touchedNode = self.nodeAtPoint(location)
+                                
+                if(touchedNode.name == "+circle"){
+                    addCircleAtPoint(CGPoint(x: self.frame.midX, y: self.frame.midY))
+                }
+                else if(touchedNode.name == "+rectangle"){
+                    addRectAtPoint(CGPoint(x: self.frame.midX, y: self.frame.midY))
+                }
+                else if(touchedNode.name == "+triangle"){
+                    addTriangleAtPoint(CGPoint(x: self.frame.midX, y: self.frame.midY))
+                }
+                else if(touchedNode.name == "+ellipse"){
+                    addEllipseAtPoint(CGPoint(x: self.frame.midX, y: self.frame.midY))
+                }
+                else if(shapeNames.contains(touchedNode.name!)){
+                    if(selectedShape != nil){
+                        ShapeUtil.unhighlight(selectedShape!)
+                    }
+                    selectedShape = touchedNode as? SKShapeNode
+                    ShapeUtil.highlight(selectedShape!)
+                }
+                else if(selectedShape != nil){
+                    ShapeUtil.unhighlight(selectedShape!)
+                }
             }
         }
+        
+        
     }
     
     override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        for touch in touches{
-            let location = touch.locationInNode(self)
-    
+        if(touches.count == 2){
+            var rotatePoints: [CGPoint] = []
+            for touch in touches{
+                rotatePoints.append(touch.locationInNode(self))
+            }
+            let newVector = getVectorFromPoints(rotatePoints[0], secondPoint: rotatePoints[1])
+
             if(selectedShape != nil){
-                selectedShape!.position = location
+                ShapeUtil.rotateFromVectors(rotateVector!, v2: newVector, aShape: selectedShape!)
+                ShapeUtil.scaleFromVectors(rotateVector!, v2: newVector, aShape: selectedShape!)
+            }
+            
+            rotateVector = newVector
+        }
+        else{
+            for touch in touches{
+                let location = touch.locationInNode(self)
+                
+                if(selectedShape != nil){
+                    selectedShape!.position = location
+                }
             }
         }
+        
     }
     
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        
+        rotateVector = nil
     }
     
     func rotateLeft(){
@@ -143,5 +173,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(triangle)
     }
     
+    func getVectorFromPoints(firstPoint: CGPoint, secondPoint: CGPoint)->CGVector{
+        let dy = secondPoint.y - firstPoint.y
+        let dx = secondPoint.x - firstPoint.x
+        return CGVector(dx: dx, dy: dy)
+    }
 
 }
