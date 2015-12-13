@@ -9,14 +9,16 @@
 import UIKit
 import SpriteKit
 
-class GameViewController: UIViewController {
-
+class GameViewController: UIViewController, UIGestureRecognizerDelegate {
+    var skView: SKView!
+    var scene: GameScene!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         if let scene = GameScene(fileNamed:"GameScene") {
             // Configure the view.
-            let skView = self.view as! SKView
+            skView = self.view as! SKView
             skView.showsFPS = true
             skView.showsNodeCount = true
             skView.showsPhysics = true
@@ -25,8 +27,9 @@ class GameViewController: UIViewController {
             skView.ignoresSiblingOrder = true
             
             /* Set the scale mode to scale to fit the window */
-            scene.scaleMode = .AspectFill
-            
+            scene.scaleMode = .ResizeFill///.AspectFill
+           
+            self.scene = scene
             skView.presentScene(scene)
         }
     }
@@ -51,4 +54,29 @@ class GameViewController: UIViewController {
     override func prefersStatusBarHidden() -> Bool {
         return true
     }
+    
+    @IBAction func handlePan(recognizer: UIPanGestureRecognizer){
+        let translation = recognizer.translationInView(self.view)
+        scene.handlePan(translation)
+        recognizer.setTranslation(CGPointZero, inView: self.view)
+        
+        if(recognizer.state == UIGestureRecognizerState.Ended){
+            scene.shouldPanSelectedShape = false
+        }
+    }
+    
+    @IBAction func handlePinch(recognizer: UIPinchGestureRecognizer){
+        scene.handlePinch(recognizer.scale)
+        recognizer.scale = 1
+    }
+    
+    @IBAction func handleRotate(recognizer: UIRotationGestureRecognizer){
+        scene.handleRotate(recognizer.rotation)
+        recognizer.rotation = 0
+    }
+    
+    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
+    
 }
