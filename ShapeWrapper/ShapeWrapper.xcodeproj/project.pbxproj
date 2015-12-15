@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		50099A081C19228B008B5C42 /* Triangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50099A071C19228B008B5C42 /* Triangle.swift */; };
+		500DF0321C1FB5D800887436 /* HingedRectangles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500DF0311C1FB5D800887436 /* HingedRectangles.swift */; };
 		502F85CF1C16668700136232 /* Circle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502F85CE1C16668700136232 /* Circle.swift */; };
 		5034EDD61C14F642005D4BC7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5034EDD51C14F642005D4BC7 /* AppDelegate.swift */; };
 		5034EDD81C14F642005D4BC7 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 5034EDD71C14F642005D4BC7 /* GameScene.sks */; };
@@ -23,6 +24,7 @@
 
 /* Begin PBXFileReference section */
 		50099A071C19228B008B5C42 /* Triangle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Triangle.swift; sourceTree = "<group>"; };
+		500DF0311C1FB5D800887436 /* HingedRectangles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HingedRectangles.swift; sourceTree = "<group>"; };
 		502F85CE1C16668700136232 /* Circle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Circle.swift; sourceTree = "<group>"; };
 		5034EDD21C14F642005D4BC7 /* ShapeWrapper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShapeWrapper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5034EDD51C14F642005D4BC7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 				502F85CE1C16668700136232 /* Circle.swift */,
 				50099A071C19228B008B5C42 /* Triangle.swift */,
 				507FA8841C196F91001490AB /* Ellipse.swift */,
+				500DF0311C1FB5D800887436 /* HingedRectangles.swift */,
 				5089797E1C16D9E0009B73EE /* ShapeUtil.swift */,
 			);
 			name = Shapes;
@@ -172,6 +175,7 @@
 				5034EDDC1C14F642005D4BC7 /* GameViewController.swift in Sources */,
 				5034EDD61C14F642005D4BC7 /* AppDelegate.swift in Sources */,
 				50099A081C19228B008B5C42 /* Triangle.swift in Sources */,
+				500DF0321C1FB5D800887436 /* HingedRectangles.swift in Sources */,
 				5034EDEC1C14F70E005D4BC7 /* Rectangle.swift in Sources */,
 				507FA8851C196F91001490AB /* Ellipse.swift in Sources */,
 			);

@@ -63,6 +63,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         addEllipse.position = CGPoint(x: self.frame.midX + 70, y: self.frame.maxY - 70)
         addEllipse.color = SKColor.blackColor()
         self.addChild(addEllipse)
+        
+        let addJoint = SKLabelNode(text: "+joint")
+        addJoint.fontSize = 20
+        addJoint.name = addJoint.text
+        addJoint.position = CGPoint(x: self.frame.midX + 70, y: self.frame.maxY - 100)
+        addJoint.color = SKColor.blackColor()
+        self.addChild(addJoint)
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -82,6 +89,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
             else if(touchedNode.name == "+ellipse"){
                 addEllipseAtPoint(CGPoint(x: self.frame.midX, y: self.frame.midY))
+            }
+            else if(touchedNode.name == "+joint"){
+                addHingedRectAtPoint(CGPoint(x: self.frame.midX, y: self.frame.midY))
             }
             else if(shapeNames.contains(touchedNode.name!)){
                 let touchedShape = touchedNode as? SKShapeNode
@@ -146,6 +156,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let triangle = Triangle(aSideLength: 50.0, aColor: SKColor.orangeColor())
         triangle.position = aPoint
         self.addChild(triangle)
+    }
+    
+    func addHingedRectAtPoint(aPoint: CGPoint){
+        let hingedRects = HingedRectangles(aWidth: 100.0, aHeight: 50.0, aColor: SKColor.orangeColor(), aScene: self, aPosition: aPoint)
     }
     
     func getVectorFromPoints(firstPoint: CGPoint, secondPoint: CGPoint)->CGVector{
