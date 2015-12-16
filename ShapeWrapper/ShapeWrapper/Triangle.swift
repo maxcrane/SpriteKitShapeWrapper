@@ -39,6 +39,7 @@ class Triangle: SKShapeNode {
         self.path = bezierPath.CGPath
         self.physicsBody = SKPhysicsBody(polygonFromPath: bezierPath.CGPath)
         self.physicsBody?.categoryBitMask = CollisionCategories.Triangle
+        self.physicsBody?.contactTestBitMask = CollisionCategories.Box
         self.physicsBody?.affectedByGravity = false
         
         self.strokeColor = SKColor.clearColor() 

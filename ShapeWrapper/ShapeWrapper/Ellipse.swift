@@ -23,6 +23,7 @@ class Ellipse: SKShapeNode{
         self.path = path
         self.physicsBody = SKPhysicsBody(polygonFromPath: path)
         self.physicsBody?.categoryBitMask = CollisionCategories.Rectangle
+        self.physicsBody?.contactTestBitMask = CollisionCategories.Box
         self.physicsBody?.affectedByGravity = false
         
         self.strokeColor = SKColor.clearColor() 

@@ -13,6 +13,7 @@ struct CollisionCategories{
     static let Rectangle: UInt32 = 0x1 << 1
     static let Circle: UInt32 = 0x1 << 2
     static let Triangle: UInt32 = 0x1 << 3
+    static let Box: UInt32 = 0x1 << 4
 }
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
@@ -70,6 +71,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         addJoint.position = CGPoint(x: self.frame.midX + 70, y: self.frame.maxY - 100)
         addJoint.color = SKColor.blackColor()
         self.addChild(addJoint)
+        
+        let box = Box(aSideLength: 25.0, aColor: SKColor.whiteColor())
+        box.position = CGPoint(x: self.frame.midX - 70, y: self.frame.maxY - 100)
+        self.addChild(box)
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -119,9 +124,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        print("touches ended")
         shouldPanSelectedShape = false
     }
+    
+//    func didBeginContact(contact: SKPhysicsContact) {
+//        var bodyA = contact.bodyA
+//        var bodyB = contact.bodyB
+//        
+//        if(bodyA.categoryBitMask > bodyB.categoryBitMask){
+//            bodyA = contact.bodyB
+//            bodyB = contact.bodyA
+//        }
+//        
+//        if(bodyB.categoryBitMask == CollisionCategories.Box){
+//            let bodyANode = bodyA.node as! SKShapeNode
+//            ShapeUtil.fadeOut(bodyANode)
+//        }
+//    }
     
     func rotateLeft(){
         self.enumerateChildNodesWithName("rectangle"){
@@ -169,7 +188,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func handlePan(translation: CGPoint){
+        print("handling pan")
         if(selectedShape != nil && shouldPanSelectedShape == true){
+            print("handlded")
             selectedShape?.position = CGPoint(x: (selectedShape?.position.x)! + translation.x, y: (selectedShape?.position.y)! - translation.y)
         }
     }

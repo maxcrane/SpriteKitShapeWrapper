@@ -55,4 +55,14 @@ class ShapeUtil {
         
         aShape.setScale(CGFloat(1.0 + scaleDiff))
     }
+    
+    static func fadeOut(aShape: SKShapeNode){
+        let fadeOutAction = SKAction.fadeAlphaTo(0.5, duration: 0.3)
+        aShape.runAction(fadeOutAction)
+    }
+    
+    static func fadeIn(aShape: SKShapeNode){
+        let fadeInAction = SKAction.fadeAlphaTo(1, duration: 0.3)
+        aShape.runAction(fadeInAction)
+    }
 }

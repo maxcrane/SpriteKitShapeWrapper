@@ -23,6 +23,7 @@ class Rectangle: SKShapeNode {
         
         self.physicsBody = SKPhysicsBody(rectangleOfSize: aSize)
         self.physicsBody?.categoryBitMask = CollisionCategories.Rectangle
+        //self.physicsBody?.contactTestBitMask = CollisionCategories.Box
         self.physicsBody?.affectedByGravity = false
         
         self.strokeColor = SKColor.clearColor() 
