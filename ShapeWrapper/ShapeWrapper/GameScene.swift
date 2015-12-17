@@ -17,6 +17,11 @@ struct CollisionCategories{
     static let Box: UInt32 = 0x1 << 5
 }
 
+struct ZPositions{
+    static let Shapes:CGFloat = 1.0
+    static let Box:CGFloat = 2.0
+}
+
 class GameScene: SKScene, SKPhysicsContactDelegate {
     let shapeNames: [String] = ["rectangle", "circle", "triangle", "ellipse"]
     var selectedShape: SKShapeNode?

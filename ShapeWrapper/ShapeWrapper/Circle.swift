@@ -30,6 +30,7 @@ class Circle: SKShapeNode {
         self.physicsBody?.collisionBitMask = ShapeUtil.collisionBitMasks()
         self.physicsBody?.affectedByGravity = true
         
+        self.zPosition = ZPositions.Shapes
         self.strokeColor = SKColor.clearColor() 
         self.fillColor = aColor
     }

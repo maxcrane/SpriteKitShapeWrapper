@@ -44,6 +44,8 @@ class Box: SKShapeNode{
         self.physicsBody?.collisionBitMask = 0
         self.physicsBody?.affectedByGravity = false
         self.physicsBody?.dynamic = false
+        
+        self.zPosition = ZPositions.Box
         self.strokeColor = SKColor.clearColor()
         self.fillColor = aColor
     }

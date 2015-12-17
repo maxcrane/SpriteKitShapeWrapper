@@ -27,6 +27,7 @@ class Ellipse: SKShapeNode{
         self.physicsBody?.contactTestBitMask = CollisionCategories.Box
         self.physicsBody?.affectedByGravity = false
         
+        self.zPosition = ZPositions.Shapes
         self.strokeColor = SKColor.clearColor() 
         self.fillColor = color
     }
