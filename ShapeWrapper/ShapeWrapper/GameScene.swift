@@ -13,7 +13,8 @@ struct CollisionCategories{
     static let Rectangle: UInt32 = 0x1 << 1
     static let Circle: UInt32 = 0x1 << 2
     static let Triangle: UInt32 = 0x1 << 3
-    static let Box: UInt32 = 0x1 << 4
+    static let Ellipse: UInt32 = 0x1 << 4
+    static let Box: UInt32 = 0x1 << 5
 }
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
@@ -127,20 +128,35 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         shouldPanSelectedShape = false
     }
     
-//    func didBeginContact(contact: SKPhysicsContact) {
-//        var bodyA = contact.bodyA
-//        var bodyB = contact.bodyB
-//        
-//        if(bodyA.categoryBitMask > bodyB.categoryBitMask){
-//            bodyA = contact.bodyB
-//            bodyB = contact.bodyA
-//        }
-//        
-//        if(bodyB.categoryBitMask == CollisionCategories.Box){
-//            let bodyANode = bodyA.node as! SKShapeNode
-//            ShapeUtil.fadeOut(bodyANode)
-//        }
-//    }
+    func didBeginContact(contact: SKPhysicsContact) {
+        var bodyA = contact.bodyA
+        var bodyB = contact.bodyB
+        
+        if(bodyA.categoryBitMask > bodyB.categoryBitMask){
+            bodyA = bodyB
+            bodyB = contact.bodyA
+        }
+        
+        if(bodyB.categoryBitMask == CollisionCategories.Box){
+            let bodyANode = bodyA.node as! SKShapeNode
+            ShapeUtil.fadeOut(bodyANode)
+        }
+    }
+    
+    func didEndContact(contact: SKPhysicsContact) {
+        var bodyA = contact.bodyA
+        var bodyB = contact.bodyB
+        
+        if(bodyA.categoryBitMask > bodyB.categoryBitMask){
+            bodyA = bodyB
+            bodyB = contact.bodyA
+        }
+        
+        if(bodyB.categoryBitMask == CollisionCategories.Box){
+            let bodyANode = bodyA.node as! SKShapeNode
+            ShapeUtil.fadeIn(bodyANode)
+        }
+    }
     
     func rotateLeft(){
         self.enumerateChildNodesWithName("rectangle"){

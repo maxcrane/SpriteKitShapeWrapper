@@ -22,7 +22,8 @@ class Ellipse: SKShapeNode{
         let path = CGPathCreateWithEllipseInRect(rect, nil)
         self.path = path
         self.physicsBody = SKPhysicsBody(polygonFromPath: path)
-        self.physicsBody?.categoryBitMask = CollisionCategories.Rectangle
+        self.physicsBody?.categoryBitMask = CollisionCategories.Ellipse
+        self.physicsBody?.collisionBitMask = CollisionCategories.Ellipse
         self.physicsBody?.contactTestBitMask = CollisionCategories.Box
         self.physicsBody?.affectedByGravity = false
         

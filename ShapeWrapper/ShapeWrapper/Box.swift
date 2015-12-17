@@ -41,8 +41,9 @@ class Box: SKShapeNode{
         self.path = bezierPath.CGPath
         self.physicsBody = SKPhysicsBody(polygonFromPath: bezierPath.CGPath)
         self.physicsBody?.categoryBitMask = CollisionCategories.Box
+        self.physicsBody?.collisionBitMask = 0
         self.physicsBody?.affectedByGravity = false
-        
+        self.physicsBody?.dynamic = false
         self.strokeColor = SKColor.clearColor()
         self.fillColor = aColor
     }
