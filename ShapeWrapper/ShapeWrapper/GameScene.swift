@@ -21,11 +21,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let shapeNames: [String] = ["rectangle", "circle", "triangle", "ellipse"]
     var selectedShape: SKShapeNode?
     var shouldPanSelectedShape: Bool?
+    var shouldDeleteShape: Bool?
     
     override func didMoveToView(view: SKView) {
         configurePhysics()
         addButtons()
         self.name = "shapescene"
+        shouldDeleteShape = false
     }
     
     func configurePhysics(){
@@ -125,7 +127,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        //shouldPanSelectedShape = false
+        //print("touches ended")
+    }
+    
+    func touchEndedAtPoint(point: CGPoint){
         shouldPanSelectedShape = false
+        if(shouldDeleteShape == true && selectedShape != nil){
+            self.removeChildrenInArray([selectedShape!])
+            selectedShape = nil
+            shouldDeleteShape = false
+        }
     }
     
     func didBeginContact(contact: SKPhysicsContact) {
@@ -140,6 +152,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if(bodyB.categoryBitMask == CollisionCategories.Box){
             let bodyANode = bodyA.node as! SKShapeNode
             ShapeUtil.fadeOut(bodyANode)
+            shouldDeleteShape = true
         }
     }
     
@@ -155,6 +168,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if(bodyB.categoryBitMask == CollisionCategories.Box){
             let bodyANode = bodyA.node as! SKShapeNode
             ShapeUtil.fadeIn(bodyANode)
+            shouldDeleteShape = false
         }
     }
     

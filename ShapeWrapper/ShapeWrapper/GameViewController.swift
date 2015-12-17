@@ -61,7 +61,8 @@ class GameViewController: UIViewController, UIGestureRecognizerDelegate {
         recognizer.setTranslation(CGPointZero, inView: self.view)
         
         if(recognizer.state == UIGestureRecognizerState.Ended){
-            scene.shouldPanSelectedShape = false
+            let touchPoint: CGPoint = recognizer.locationInView(self.view)
+            scene.touchEndedAtPoint(touchPoint)
         }
     }
     
