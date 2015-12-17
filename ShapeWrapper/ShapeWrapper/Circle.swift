@@ -27,6 +27,7 @@ class Circle: SKShapeNode {
         self.physicsBody = SKPhysicsBody(circleOfRadius: CGFloat(aDiameter/2.0))
         self.physicsBody?.categoryBitMask = CollisionCategories.Circle
         self.physicsBody?.contactTestBitMask = CollisionCategories.Box
+        self.physicsBody?.collisionBitMask = ShapeUtil.collisionBitMasks()
         self.physicsBody?.affectedByGravity = true
         
         self.strokeColor = SKColor.clearColor() 

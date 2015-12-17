@@ -23,7 +23,7 @@ class Ellipse: SKShapeNode{
         self.path = path
         self.physicsBody = SKPhysicsBody(polygonFromPath: path)
         self.physicsBody?.categoryBitMask = CollisionCategories.Ellipse
-        self.physicsBody?.collisionBitMask = CollisionCategories.Ellipse
+        self.physicsBody?.collisionBitMask = ShapeUtil.collisionBitMasks()
         self.physicsBody?.contactTestBitMask = CollisionCategories.Box
         self.physicsBody?.affectedByGravity = false
         

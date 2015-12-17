@@ -65,4 +65,9 @@ class ShapeUtil {
         let fadeInAction = SKAction.fadeAlphaTo(1, duration: 0.3)
         aShape.runAction(fadeInAction)
     }
+    
+    static func collisionBitMasks()->UInt32{
+        return CollisionCategories.Border & CollisionCategories.Circle & CollisionCategories.Ellipse
+            & CollisionCategories.Rectangle & CollisionCategories.Triangle
+    }
 }
