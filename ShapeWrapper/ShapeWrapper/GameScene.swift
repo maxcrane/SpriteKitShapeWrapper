@@ -31,6 +31,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func didMoveToView(view: SKView) {
         configurePhysics()
         addButtons()
+        addEmoji()  
         self.name = "shapescene"
         shouldDeleteShape = false
     }
@@ -42,6 +43,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.physicsWorld.contactDelegate = self
         self.physicsBody = SKPhysicsBody(edgeLoopFromRect: self.frame)
         self.physicsBody?.categoryBitMask = CollisionCategories.Border
+    }
+    
+    func addEmoji(){
+        let emoji = Emoji()
+        emoji.position = CGPoint(x: self.frame.midX, y: self.frame.midY)
+        self.addChild(emoji)
     }
     
     func addButtons(){
