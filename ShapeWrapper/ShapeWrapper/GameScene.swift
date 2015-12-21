@@ -23,7 +23,7 @@ struct ZPositions{
 }
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
-    let shapeNames: [String] = ["rectangle", "circle", "triangle", "ellipse"]
+    let shapeNames: [String] = ["rectangle", "circle", "triangle", "ellipse", "emoji"]
     var selectedShape: SKShapeNode?
     var shouldPanSelectedShape: Bool?
     var shouldDeleteShape: Bool?
@@ -46,9 +46,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func addEmoji(){
-        let emoji = Emoji()
-        emoji.position = CGPoint(x: self.frame.midX, y: self.frame.midY)
-        self.addChild(emoji)
+        let emoji = Emoji(aScene: self, aPosition: CGPoint(x: self.frame.midX, y: self.frame.midY))
     }
     
     func addButtons(){
@@ -230,9 +228,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func handlePan(translation: CGPoint){
-        print("handling pan")
+        //print("handling pan")
         if(selectedShape != nil && shouldPanSelectedShape == true){
-            print("handlded")
+            //print("handlded")
             selectedShape?.position = CGPoint(x: (selectedShape?.position.x)! + translation.x, y: (selectedShape?.position.y)! - translation.y)
         }
     }
