@@ -1,84 +1,48 @@
 //
-//  Emoji.swift
+//  EmojiFromText.swift
 //  ShapeWrapper
 //
-//  Created by Max Crane on 12/20/15.
+//  Created by Max Crane on 12/21/15.
 //  Copyright © 2015 Crane Apps. All rights reserved.
 //
 
 import Foundation
 import SpriteKit
 
-class Emoji: SKShapeNode {
-    var anEmoji: SKLabelNode!
-    var emojiConstraint: SKConstraint?
+class Emoji: SKSpriteNode {
+    //var actualEmoji: SKSpriteNode?
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
-    
-    
-    init(aScene: SKScene, aPosition: CGPoint){
-        //super.init(frame: aRect)
-        super.init()
-        let aDiameter = 28.0
-        let theSize = CGSize(width: aDiameter, height: aDiameter)
-        
-        var emojiFace = String(UnicodeScalar(0x1F601))
-        anEmoji = SKLabelNode(text: emojiFace)
-        anEmoji?.name = "emojiLabel"
-        anEmoji?.position = CGPoint(x: aPosition.x, y: aPosition.y - theSize.height/2)
-        anEmoji?.zPosition = ZPositions.Emojis
-        anEmoji?.horizontalAlignmentMode = .Center
-        anEmoji?.verticalAlignmentMode = .Center
-        aScene.addChild(anEmoji!)
-        self.name = "emoji"
-        
-        
-        
-        let theOrigin = CGPoint(x: -aDiameter/2, y: -aDiameter/2)
-        
-        self.path = CGPathCreateWithEllipseInRect(CGRect(origin: theOrigin, size: theSize), nil)
-        
-        self.physicsBody = SKPhysicsBody(circleOfRadius: CGFloat(aDiameter/2.0))
-        self.physicsBody?.categoryBitMask = CollisionCategories.Circle
-        self.physicsBody?.contactTestBitMask = CollisionCategories.Box
+    init(){
+        //let someString = String(UnicodeScalar(0x1F601))
+        let someString = String(UnicodeScalar(0x1F680))
+        let aSize = 200.0
+        let someSize = CGSize(width: aSize, height: aSize)
+        let theImage = Emoji.getImageFromString(someString, imageSize: someSize)
+        let texture = SKTexture(image: theImage)
+        super.init(texture: texture, color: SKColor.clearColor(), size: someSize)
+        self.physicsBody = SKPhysicsBody(texture: texture, size: someSize)
+        self.physicsBody?.categoryBitMask = CollisionCategories.Emoji
         self.physicsBody?.collisionBitMask = ShapeUtil.collisionBitMasks()
-        self.physicsBody?.affectedByGravity = false
-        self.position = aPosition
-        
-        self.zPosition = ZPositions.Shapes
-        self.strokeColor = SKColor.clearColor()
-        self.fillColor = SKColor.clearColor()
-        aScene.addChild(self)
-        
-        
-        
-//        for i in 0x1F601...0x1F64F {
-//            var c = String(UnicodeScalar(i))
-//            print(c)
-//        }
-        let alignTimer = NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: "alignEmoji", userInfo: nil, repeats: true)
-        alignTimer.fire()
-        
+        self.physicsBody?.dynamic = false
+        self.name = "emoji"
     }
     
-    
-    func alignEmoji(){
-        anEmoji?.position = CGPoint(x: self.position.x, y: self.position.y)// - self.frame.size.height/2)
+    static func getImageFromString(someString: String, imageSize: CGSize)->UIImage{
+        let origin = CGPoint(x: 0, y: 0)
+        let rect = CGRect(origin: origin, size: imageSize)
+        let textColor:UIColor =  UIColor.blackColor()
+        let textFont: UIFont = UIFont(name: "Helvetica Bold", size: imageSize.height)!
+        
+        UIGraphicsBeginImageContext(imageSize)
+        let textFontAtts = [NSFontAttributeName: textFont, NSForegroundColorAttributeName: textColor]
+        someString.drawInRect(rect, withAttributes: textFontAtts)
+        let newImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage
     }
-    
-    func rotateBy(arc: CGFloat){
-        self.zRotation += arc
-        self.anEmoji.zRotation -= arc
-    }
-    
-    func scaleBy(scale: CGFloat){
-        let scaleAction = SKAction.scaleBy(scale, duration: 0.00000001)
-        self.runAction(scaleAction)
-        self.anEmoji.runAction(scaleAction)
-    }
-    
-    
-    
 }

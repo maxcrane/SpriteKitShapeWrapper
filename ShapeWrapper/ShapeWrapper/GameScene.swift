@@ -15,6 +15,7 @@ struct CollisionCategories{
     static let Triangle: UInt32 = 0x1 << 3
     static let Ellipse: UInt32 = 0x1 << 4
     static let Box: UInt32 = 0x1 << 5
+    static let Emoji: UInt32 = 0x1 << 6
 }
 
 struct ZPositions{
@@ -24,8 +25,9 @@ struct ZPositions{
 }
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
-    let shapeNames: [String] = ["rectangle", "circle", "triangle", "ellipse", "emoji"]
+    let shapeNames: [String] = ["rectangle", "circle", "triangle", "ellipse"]
     var selectedShape: SKShapeNode?
+    var selectedNode: SKSpriteNode?
     var shouldPanSelectedShape: Bool?
     var shouldDeleteShape: Bool?
     
@@ -47,7 +49,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func addEmoji(){
-        let emoji = Emoji(aScene: self, aPosition: CGPoint(x: self.frame.midX, y: self.frame.midY))
+        //let emoji = Emoji(aScene: self, aPosition: CGPoint(x: self.frame.midX, y: self.frame.midY))
+        let emoji = Emoji()
+        emoji.position = CGPoint(x: self.frame.midX, y: self.frame.midY)
+        self.addChild(emoji)
     }
     
     func addButtons(){
@@ -116,14 +121,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 let touchedShape = touchedNode as? SKShapeNode
                 selectShape(touchedShape!)
             }
-            else if(touchedNode.name == "emojiLabel"){
-                let emojiCircle = self.nodesAtPoint(location)
-                for node in emojiCircle{
-                    if(node != touchedNode){
-                        let touchedShape = node as? SKShapeNode
-                        selectShape(touchedShape!)
-                    }
+            else if(touchedNode.name == "emoji"){
+                if(selectedShape != nil){
+                    deselectShape(selectedShape!)
                 }
+                selectedNode = touchedNode as! SKSpriteNode
             }
         }
     }
@@ -134,6 +136,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         selectedShape = touchedShape
         ShapeUtil.highlight(selectedShape!)
+        selectedNode = nil
         shouldPanSelectedShape = true
     }
     
@@ -240,17 +243,26 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if(selectedShape != nil && shouldPanSelectedShape == true){
             selectedShape?.position = CGPoint(x: (selectedShape?.position.x)! + translation.x, y: (selectedShape?.position.y)! - translation.y)
         }
+        if(selectedNode != nil){
+            selectedNode?.position = CGPoint(x: (selectedNode?.position.x)! + translation.x, y: (selectedNode?.position.y)! - translation.y)
+        }
     }
     
     func handlePinch(scale: CGFloat){
         if(selectedShape != nil){
-            ShapeUtil.handlePinch(scale, aShape: selectedShape!)
+            ShapeUtil.handlePinch(scale, aNode: selectedShape!)
+        }
+        if(selectedNode != nil){
+            ShapeUtil.handlePinch(scale, aNode: selectedNode!)
         }
     }
     
     func handleRotate(rotation: CGFloat){
         if(selectedShape != nil){
-            ShapeUtil.rotateBy(-rotation, aShape: selectedShape!)
+            ShapeUtil.rotateBy(-rotation, aNode: selectedShape!)
+        }
+        if(selectedNode != nil){
+            ShapeUtil.rotateBy(-rotation, aNode: selectedNode!)
         }
     }
 

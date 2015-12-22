@@ -19,10 +19,10 @@
 		5034EDE11C14F642005D4BC7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5034EDE01C14F642005D4BC7 /* Assets.xcassets */; };
 		5034EDE41C14F642005D4BC7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5034EDE21C14F642005D4BC7 /* LaunchScreen.storyboard */; };
 		5034EDEC1C14F70E005D4BC7 /* Rectangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5034EDEB1C14F70E005D4BC7 /* Rectangle.swift */; };
-		504AF2751C27727700E0EC0C /* Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504AF2741C27727700E0EC0C /* Emoji.swift */; };
 		5064A33F1C26092700AE7FF3 /* Star.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5064A33E1C26092700AE7FF3 /* Star.swift */; };
 		507FA8851C196F91001490AB /* Ellipse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507FA8841C196F91001490AB /* Ellipse.swift */; };
 		5089797F1C16D9E0009B73EE /* ShapeUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5089797E1C16D9E0009B73EE /* ShapeUtil.swift */; };
+		50ACF5111C28EFC1001A146C /* Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50ACF5101C28EFC1001A146C /* Emoji.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,10 +40,10 @@
 		5034EDE31C14F642005D4BC7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5034EDE51C14F642005D4BC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5034EDEB1C14F70E005D4BC7 /* Rectangle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rectangle.swift; sourceTree = "<group>"; };
-		504AF2741C27727700E0EC0C /* Emoji.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Emoji.swift; sourceTree = "<group>"; };
 		5064A33E1C26092700AE7FF3 /* Star.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Star.swift; sourceTree = "<group>"; };
 		507FA8841C196F91001490AB /* Ellipse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ellipse.swift; sourceTree = "<group>"; };
 		5089797E1C16D9E0009B73EE /* ShapeUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShapeUtil.swift; sourceTree = "<group>"; };
+		50ACF5101C28EFC1001A146C /* Emoji.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Emoji.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,7 +100,7 @@
 				50199F1A1C20FE1500E532B2 /* Box.swift */,
 				5089797E1C16D9E0009B73EE /* ShapeUtil.swift */,
 				5064A33E1C26092700AE7FF3 /* Star.swift */,
-				504AF2741C27727700E0EC0C /* Emoji.swift */,
+				50ACF5101C28EFC1001A146C /* Emoji.swift */,
 			);
 			name = Shapes;
 			sourceTree = "<group>";
@@ -183,8 +183,8 @@
 				5064A33F1C26092700AE7FF3 /* Star.swift in Sources */,
 				5034EDDA1C14F642005D4BC7 /* GameScene.swift in Sources */,
 				5034EDDC1C14F642005D4BC7 /* GameViewController.swift in Sources */,
+				50ACF5111C28EFC1001A146C /* Emoji.swift in Sources */,
 				5034EDD61C14F642005D4BC7 /* AppDelegate.swift in Sources */,
-				504AF2751C27727700E0EC0C /* Emoji.swift in Sources */,
 				50199F1B1C20FE1500E532B2 /* Box.swift in Sources */,
 				50099A081C19228B008B5C42 /* Triangle.swift in Sources */,
 				500DF0321C1FB5D800887436 /* HingedRectangles.swift in Sources */,
