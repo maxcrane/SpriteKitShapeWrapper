@@ -30,7 +30,7 @@ class Emoji: SKShapeNode {
         aScene.addChild(anEmoji!)
         self.name = "emoji"
         
-        
+         
         
         let theOrigin = CGPoint(x: -aDiameter/2, y: -aDiameter/2)
         let theSize = CGSize(width: aDiameter, height: aDiameter)
