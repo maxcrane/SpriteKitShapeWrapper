@@ -20,6 +20,7 @@ struct CollisionCategories{
 struct ZPositions{
     static let Shapes:CGFloat = 1.0
     static let Box:CGFloat = 2.0
+    static let Emojis:CGFloat = 3.0
 }
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
@@ -113,19 +114,27 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
             else if(shapeNames.contains(touchedNode.name!)){
                 let touchedShape = touchedNode as? SKShapeNode
-                
-                if(selectedShape != nil && selectedShape != touchedShape){
-                    deselectShape(selectedShape!)
-                }
                 selectShape(touchedShape!)
-                shouldPanSelectedShape = true
+            }
+            else if(touchedNode.name == "emojiLabel"){
+                let emojiCircle = self.nodesAtPoint(location)
+                for node in emojiCircle{
+                    if(node != touchedNode){
+                        let touchedShape = node as? SKShapeNode
+                        selectShape(touchedShape!)
+                    }
+                }
             }
         }
     }
     
-    func selectShape(shape: SKShapeNode){
-        selectedShape = shape
+    func selectShape(touchedShape: SKShapeNode){
+        if(selectedShape != nil && selectedShape != touchedShape){
+            deselectShape(selectedShape!)
+        }
+        selectedShape = touchedShape
         ShapeUtil.highlight(selectedShape!)
+        shouldPanSelectedShape = true
     }
     
     func deselectShape(shape: SKShapeNode){
@@ -228,17 +237,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func handlePan(translation: CGPoint){
-        //print("handling pan")
         if(selectedShape != nil && shouldPanSelectedShape == true){
-            //print("handlded")
             selectedShape?.position = CGPoint(x: (selectedShape?.position.x)! + translation.x, y: (selectedShape?.position.y)! - translation.y)
         }
     }
     
     func handlePinch(scale: CGFloat){
         if(selectedShape != nil){
-            let scaleAction = SKAction.scaleBy(scale, duration: 0.00000001)
-            selectedShape?.runAction(scaleAction)
+            ShapeUtil.handlePinch(scale, aShape: selectedShape!)
         }
     }
     

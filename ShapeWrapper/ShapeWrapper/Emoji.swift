@@ -10,7 +10,7 @@ import Foundation
 import SpriteKit
 
 class Emoji: SKShapeNode {
-    var anEmoji: SKLabelNode?
+    var anEmoji: SKLabelNode!
     var emojiConstraint: SKConstraint?
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -21,19 +21,23 @@ class Emoji: SKShapeNode {
     init(aScene: SKScene, aPosition: CGPoint){
         //super.init(frame: aRect)
         super.init()
-        let aDiameter = 50.0
+        let aDiameter = 28.0
+        let theSize = CGSize(width: aDiameter, height: aDiameter)
         
         var emojiFace = String(UnicodeScalar(0x1F601))
         anEmoji = SKLabelNode(text: emojiFace)
         anEmoji?.name = "emojiLabel"
-        anEmoji?.position = aPosition
+        anEmoji?.position = CGPoint(x: aPosition.x, y: aPosition.y - theSize.height/2)
+        anEmoji?.zPosition = ZPositions.Emojis
+        anEmoji?.horizontalAlignmentMode = .Center
+        anEmoji?.verticalAlignmentMode = .Center
         aScene.addChild(anEmoji!)
         self.name = "emoji"
         
-         
+        
         
         let theOrigin = CGPoint(x: -aDiameter/2, y: -aDiameter/2)
-        let theSize = CGSize(width: aDiameter, height: aDiameter)
+        
         self.path = CGPathCreateWithEllipseInRect(CGRect(origin: theOrigin, size: theSize), nil)
         
         self.physicsBody = SKPhysicsBody(circleOfRadius: CGFloat(aDiameter/2.0))
@@ -45,19 +49,36 @@ class Emoji: SKShapeNode {
         
         self.zPosition = ZPositions.Shapes
         self.strokeColor = SKColor.clearColor()
-        self.fillColor = SKColor.blackColor()
+        self.fillColor = SKColor.clearColor()
         aScene.addChild(self)
         
-        let range = SKRange(value: 0.0, variance: 0.0)
-        emojiConstraint = SKConstraint.distance(range, toNode: anEmoji!)
-        self.constraints = [emojiConstraint!]
-        //
         
         
 //        for i in 0x1F601...0x1F64F {
 //            var c = String(UnicodeScalar(i))
 //            print(c)
 //        }
+        let alignTimer = NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: "alignEmoji", userInfo: nil, repeats: true)
+        alignTimer.fire()
+        
     }
+    
+    
+    func alignEmoji(){
+        anEmoji?.position = CGPoint(x: self.position.x, y: self.position.y)// - self.frame.size.height/2)
+    }
+    
+    func rotateBy(arc: CGFloat){
+        self.zRotation += arc
+        self.anEmoji.zRotation -= arc
+    }
+    
+    func scaleBy(scale: CGFloat){
+        let scaleAction = SKAction.scaleBy(scale, duration: 0.00000001)
+        self.runAction(scaleAction)
+        self.anEmoji.runAction(scaleAction)
+    }
+    
+    
     
 }

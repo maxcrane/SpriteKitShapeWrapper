@@ -23,6 +23,20 @@ class ShapeUtil {
     static func rotateBy(arc: CGFloat, aShape: SKShapeNode){
         aShape.zRotation += arc
         
+        if(aShape is Emoji){
+            let emojiShape = aShape as! Emoji
+            emojiShape.anEmoji.zRotation += arc
+        }
+    }
+    
+    static func handlePinch(scale: CGFloat, aShape: SKShapeNode){
+        let scaleAction = SKAction.scaleBy(scale, duration: 0.00000001)
+        aShape.runAction(scaleAction)
+        
+        if(aShape is Emoji){
+            let emojiShape = aShape as! Emoji
+            emojiShape.anEmoji.runAction(scaleAction)
+        }
     }
     
     
