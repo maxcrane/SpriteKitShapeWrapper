@@ -49,8 +49,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func addEmoji(){
-        //let emoji = Emoji(aScene: self, aPosition: CGPoint(x: self.frame.midX, y: self.frame.midY))
-        let emoji = Emoji()
+
+        let emoji = Emoji(anEmoji: 0x1F64F, aSize: 50.0)
         emoji.position = CGPoint(x: self.frame.midX, y: self.frame.midY)
         self.addChild(emoji)
     }

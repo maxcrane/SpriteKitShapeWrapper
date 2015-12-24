@@ -16,10 +16,8 @@ class Emoji: SKSpriteNode {
         super.init(coder: aDecoder)
     }
     
-    init(){
-        //let someString = String(UnicodeScalar(0x1F601))
-        let someString = String(UnicodeScalar(0x1F680))
-        let aSize = 200.0
+    init(anEmoji: UInt32, aSize: CGFloat){
+        let someString = String(UnicodeScalar(anEmoji))
         let someSize = CGSize(width: aSize, height: aSize)
         let theImage = Emoji.getImageFromString(someString, imageSize: someSize)
         let texture = SKTexture(image: theImage)
