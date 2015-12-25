@@ -40,9 +40,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func configurePhysics(){
-        //Get rid of gravity
-        //self.physicsWorld.gravity = CGVectorMake(0.0, 0.0)
-        
+        //Get rid of gravity        
         self.physicsWorld.contactDelegate = self
         self.physicsBody = SKPhysicsBody(edgeLoopFromRect: self.frame)
         self.physicsBody?.categoryBitMask = CollisionCategories.Border

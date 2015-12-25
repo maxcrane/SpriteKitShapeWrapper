@@ -93,13 +93,13 @@
 			isa = PBXGroup;
 			children = (
 				5034EDEB1C14F70E005D4BC7 /* Rectangle.swift */,
+				5064A33E1C26092700AE7FF3 /* Star.swift */,
 				502F85CE1C16668700136232 /* Circle.swift */,
 				50099A071C19228B008B5C42 /* Triangle.swift */,
 				507FA8841C196F91001490AB /* Ellipse.swift */,
 				500DF0311C1FB5D800887436 /* HingedRectangles.swift */,
 				50199F1A1C20FE1500E532B2 /* Box.swift */,
 				5089797E1C16D9E0009B73EE /* ShapeUtil.swift */,
-				5064A33E1C26092700AE7FF3 /* Star.swift */,
 				50ACF5101C28EFC1001A146C /* Emoji.swift */,
 			);
 			name = Shapes;
