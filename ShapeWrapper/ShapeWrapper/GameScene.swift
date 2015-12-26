@@ -1,4 +1,3 @@
-//
 //  GameScene.swift
 //  ShapeWrapper
 //
@@ -40,7 +39,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func configurePhysics(){
-        //Get rid of gravity        
         self.physicsWorld.contactDelegate = self
         self.physicsBody = SKPhysicsBody(edgeLoopFromRect: self.frame)
         self.physicsBody?.categoryBitMask = CollisionCategories.Border
@@ -147,8 +145,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        //shouldPanSelectedShape = false
-        //print("touches ended")
     }
     
     func touchEndedAtPoint(point: CGPoint){
