@@ -21,6 +21,21 @@ class Emoji: SKSpriteNode {
         let someSize = CGSize(width: aSize, height: aSize)
         let theImage = Emoji.getImageFromString(someString, imageSize: someSize)
         let texture = SKTexture(image: theImage)
+        
+        super.init(texture: texture, color: SKColor.clearColor(), size: someSize)
+        self.physicsBody = SKPhysicsBody(texture: texture, size: someSize)
+        self.physicsBody?.categoryBitMask = CollisionCategories.Emoji
+        self.physicsBody?.collisionBitMask = ShapeUtil.collisionBitMasks()
+        self.physicsBody?.dynamic = false
+        self.name = "emoji"
+    }
+    
+    init(){
+        let someString = String(UnicodeScalar(0x1F600))
+        let someSize = CGSize(width: 50.0, height: 50.0)
+        let theImage = Emoji.getImageFromString(someString, imageSize: someSize)
+        let texture = SKTexture(image: theImage)
+        
         super.init(texture: texture, color: SKColor.clearColor(), size: someSize)
         self.physicsBody = SKPhysicsBody(texture: texture, size: someSize)
         self.physicsBody?.categoryBitMask = CollisionCategories.Emoji
